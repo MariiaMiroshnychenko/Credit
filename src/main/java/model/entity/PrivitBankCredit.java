@@ -4,7 +4,17 @@ import view.MessageConstant;
 
 public class PrivitBankCredit extends Credit implements MessageConstant {
     public enum PrivitBankPurpose {
-        FOR_CAR, FOR_REAL_ESTATE, FOR_DEVICE, FOR_BUSINESS
+        FOR_CAR(CAR), FOR_REAL_ESTATE(REAL_ESTATE), FOR_DEVICE(DEVICE), FOR_BUSINESS(BUSINESS);
+
+        private String purposeName;
+
+        PrivitBankPurpose(String purposeName) {
+            this.purposeName = purposeName;
+        }
+
+        public String getPurposeName() {
+            return purposeName;
+        }
     }
 
     private PrivitBankPurpose purpose;

@@ -4,7 +4,17 @@ import view.MessageConstant;
 
 public class IkrSibBankCredit extends Credit implements MessageConstant{
     public enum IkrSibBankPurpose {
-        FOR_CAR, FOR_REAL_ESTATE, FOR_DEVICE, FOR_EDUCATION
+        FOR_CAR(CAR), FOR_REAL_ESTATE(REAL_ESTATE), FOR_DEVICE(DEVICE), FOR_EDUCATION(EDUCATION);
+
+        private String purposeName;
+
+        IkrSibBankPurpose(String purposeName) {
+            this.purposeName = purposeName;
+        }
+
+        public String getPurposeName() {
+            return purposeName;
+        }
     }
 
     private IkrSibBankPurpose purpose;

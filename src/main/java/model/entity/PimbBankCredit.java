@@ -4,7 +4,17 @@ import view.MessageConstant;
 
 public class PimbBankCredit extends Credit implements MessageConstant{
     public enum PimbBankPurpose {
-        FOR_REAL_ESTATE, FOR_DEVICE, FOR_APARTMENT_REPAIR, CREDIT_CARD
+        FOR_REAL_ESTATE(REAL_ESTATE), FOR_DEVICE(DEVICE), FOR_APARTMENT_REPAIR(APARTMENT_REPAIR), CREDIT_CARD(CARD);
+
+        private String purposeName;
+
+        PimbBankPurpose(String purposeName) {
+            this.purposeName = purposeName;
+        }
+
+        public String getPurposeName() {
+            return purposeName;
+        }
     }
 
     private PimbBankPurpose purpose;

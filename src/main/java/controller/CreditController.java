@@ -5,7 +5,6 @@ import model.data.IntMenuConstant;
 import model.data.PimbBankData;
 import model.data.PrivitBankData;
 import model.entity.Credit;
-import model.entity.IkrSibBankCredit;
 import view.CreditView;
 import view.MessageConstant;
 

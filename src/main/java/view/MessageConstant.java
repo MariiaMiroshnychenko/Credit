@@ -18,13 +18,13 @@ public interface MessageConstant {
 
     String MONTHS = "credit.term.months";
 
-    String FOR_CAR = "credit.purpose.car";
-    String FOR_REAL_ESTATE = "credit.purpose.real.estate";
-    String FOR_DEVICE = "credit.purpose.device";
-    String FOR_EDUCATION = "credit.purpose.education";
-    String FOR_APARTMENT_REPAIR = "credit.purpose.apartment.repair";
-    String CREDIT_CARD = "credit.purpose.card";
-    String FOR_BUSINESS = "credit.purpose.business";
+    String CAR = "credit.purpose.car";
+    String REAL_ESTATE = "credit.purpose.real.estate";
+    String DEVICE = "credit.purpose.device";
+    String EDUCATION = "credit.purpose.education";
+    String APARTMENT_REPAIR = "credit.purpose.apartment.repair";
+    String CARD = "credit.purpose.card";
+    String BUSINESS = "credit.purpose.business";
 
     String IKR_SIB_BANK_NAME = "ikr.sib.bank.name";
     String PIMB_BANK_NAME = "pimb.bank.name";
