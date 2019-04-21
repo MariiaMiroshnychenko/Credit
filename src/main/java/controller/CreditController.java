@@ -44,10 +44,6 @@ public class CreditController implements MessageConstant, IntMenuConstant {
 //                                              bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
 //                                              bundle.getString(PURPOSE) + bundle.getString(IkrSibBankCredit.IkrSibBankPurpose.values().toString()));
 //        }
-
-        for (IkrSibBankCredit.IkrSibBankPurpose purpose : allAvailableCredits             ) {
-
-        }
     }
 
     private List<Credit> sortByEarlyRepayment() {
