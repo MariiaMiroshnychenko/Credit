@@ -16,6 +16,7 @@ public abstract class Credit implements Givable {
     }
 
     public abstract String getBankName();
+    public abstract String getPurpose();
 
     public int getCreditSize() {
         return creditSize;

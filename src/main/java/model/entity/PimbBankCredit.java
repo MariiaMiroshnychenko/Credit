@@ -24,13 +24,16 @@ public class PimbBankCredit extends Credit implements MessageConstant{
         this.purpose = purpose;
     }
 
+
+
     @Override
     public String getBankName() {
         return PIMB_BANK_NAME;
     }
 
-    public PimbBankPurpose getPurpose() {
-        return purpose;
+    @Override
+    public String getPurpose() {
+        return purpose.getPurposeName();
     }
 
     public void setPurpose(PimbBankPurpose purpose) {

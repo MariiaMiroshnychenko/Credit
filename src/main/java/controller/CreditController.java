@@ -5,6 +5,7 @@ import model.data.IntMenuConstant;
 import model.data.PimbBankData;
 import model.data.PrivitBankData;
 import model.entity.Credit;
+import model.entity.IkrSibBankCredit;
 import view.CreditView;
 import view.MessageConstant;
 
@@ -35,14 +36,14 @@ public class CreditController implements MessageConstant, IntMenuConstant {
 
         creditView.printMessage(bundle.getString(CREDIT_AMOUNT));
 
-//        for (Credit obj : allAvailableCredits) {
-//            creditView.printMessage(bundle.getString(obj.getBankName()) + bundle.getString(SIZE) + obj.getCreditSize() +
-//                                              bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
-//                                              bundle.getString(PERCENT) + obj.getPercent() +
-//                                              bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
-//                                              bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
-//                                              bundle.getString(PURPOSE) + bundle.getString(IkrSibBankCredit.IkrSibBankPurpose.values().toString()));
-//        }
+        for (Credit obj : allAvailableCredits) {
+            creditView.printMessage(bundle.getString(obj.getBankName()) + bundle.getString(SIZE) + obj.getCreditSize() +
+                                              bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
+                                              bundle.getString(PERCENT) + obj.getPercent() +
+                                              bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
+                                              bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
+                                              bundle.getString(PURPOSE) + bundle.getString(obj.getPurpose()));
+        }
     }
 
     private List<Credit> sortByEarlyRepayment() {
