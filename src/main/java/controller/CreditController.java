@@ -23,10 +23,23 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
         this.creditModel = creditModel;
     }
 
+    private ResourceBundle getBundle(Scanner scanner) {
+        String letter = scanner.nextLine();
+        if (letter.equalsIgnoreCase(LETTER_U)) {
+            return ResourceBundle.getBundle(
+                    MESSAGES_BUNDLE_NAME, new Locale("uk", "UA"));
+        } else if (letter.equalsIgnoreCase(LETTER_R)) {
+            return ResourceBundle.getBundle(
+                    MESSAGES_BUNDLE_NAME, new Locale("ru", "RU"));
+        } else {
+            return ResourceBundle.getBundle(
+                    MESSAGES_BUNDLE_NAME, new Locale("en", "GB"));
+        }
+    }
 
     public void startProcess() {
         creditView.printMessage(CHANGE_LANGUAGE);
-        bundle = creditView.getBundle(scanner);
+        bundle = getBundle(scanner);
 
         listInitialization();
 
@@ -51,11 +64,11 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
         } else {
             creditView.printMessage(bundle.getString(MAKE_DECISION), bundle.getString(CLIENT_CHOICE));
 
-            int counter = 0;
+            int numberOfAvailableCredit = 0;
 
             for (Credit obj : allAvailableCredits) {
-                creditView.printDecision((counter + 1), DECISION_NUMBER, getStringWithAvailableCredits(obj));
-                counter++;
+                creditView.printDecision((numberOfAvailableCredit + 1), DECISION_NUMBER, getStringWithAvailableCredits(obj));
+                numberOfAvailableCredit++;
             }
 
             creditView.printMessage(getStringWithAvailableCredits(finalChoice()));
