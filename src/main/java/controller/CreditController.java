@@ -8,7 +8,7 @@ import view.MessageConstant;
 
 import java.util.*;
 
-public class CreditController implements MessageConstant, IntMenuConstant, RegexContainer {
+public class CreditController implements MessageConstant, IntMenuConstant {
     private CreditView creditView;
     private CreditModel creditModel;
     private ResourceBundle bundle;
@@ -100,7 +100,7 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
     }
 
     private void sortByCreditPurpose() {
-        if (allAvailableCredits.size() == 0){
+        if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
         } else {
             creditView.printMessage(bundle.getString(SEARCH_RESULT));
@@ -111,7 +111,7 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
             try {
                 String answer = scanner.nextLine();
 
-                if (Integer.parseInt(answer) <= 0 || Integer.parseInt(answer) >= purposes.length){
+                if (Integer.parseInt(answer) <= 0 || Integer.parseInt(answer) >= purposes.length) {
                     creditView.printMessage(bundle.getString(ERROR_MESSAGE));
                     sortByCreditPurpose();
                 }
@@ -124,17 +124,17 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
     }
 
     private void removeFromListByCreditPurpose(String purpose) {
-            Iterator<Credit> iterator = getCreditIterator();
+        Iterator<Credit> iterator = getCreditIterator();
 
-            while (iterator.hasNext()) {
-                if (!iterator.next().getPurpose().equals(purpose)) {
-                    iterator.remove();
-                }
+        while (iterator.hasNext()) {
+            if (!iterator.next().getPurpose().equals(purpose)) {
+                iterator.remove();
             }
+        }
     }
 
-    private void sortByEarlyRepayment(){
-        if (allAvailableCredits.size() == 0){
+    private void sortByEarlyRepayment() {
+        if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
         } else {
             creditView.printMessage(bundle.getString(EARLY_REPAYMENT), bundle.getString(ANSWER_YES_NO));
@@ -162,7 +162,7 @@ public class CreditController implements MessageConstant, IntMenuConstant, Regex
     }
 
     private void sortByRiseCreditLine() {
-        if (allAvailableCredits.size() == 0){
+        if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
         } else {
             creditView.printMessage(bundle.getString(RISE_CREDIT_LINE), bundle.getString(ANSWER_YES_NO));

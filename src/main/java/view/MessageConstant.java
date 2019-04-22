@@ -5,9 +5,6 @@ public interface MessageConstant {
     String EARLY_REPAYMENT = "early.repayment";
     String ANSWER_YES_NO = "answer.yes.no";
     String RISE_CREDIT_LINE = "rise.credit.line";
-    String CREDIT_AMOUNT = "credit.amount";
-    String CREDIT_TERM = "credit.term";
-    String CREDIT_PERCENT = "credit.percent";
     String CREDIT_PURPOSE = "choose.credit.purpose";
 
     String SIZE = "credit.size.value";
