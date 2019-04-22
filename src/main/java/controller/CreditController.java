@@ -14,6 +14,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
     private ResourceBundle bundle;
 
     private String clientCredit;
+
     private List<Credit> allAvailableCredits;
 
     private Scanner scanner = new Scanner(System.in);
@@ -23,7 +24,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         this.creditModel = creditModel;
     }
 
-    private ResourceBundle getBundle(Scanner scanner) {
+    private ResourceBundle getResourceBundle(Scanner scanner) {
         String letter = scanner.nextLine();
         if (letter.equalsIgnoreCase(LETTER_U)) {
             return ResourceBundle.getBundle(
@@ -39,7 +40,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
 
     public void startProcess() {
         creditView.printMessage(CHANGE_LANGUAGE);
-        bundle = getBundle(scanner);
+        bundle = getResourceBundle(scanner);
 
         listInitialization();
 
@@ -82,7 +83,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         allAvailableCredits = creditModel.allCredits;
     }
 
-    private String getStringWithAvailableCredits(Credit obj) {
+    public String getStringWithAvailableCredits(Credit obj) {
         return bundle.getString(obj.getBankName()) + bundle.getString(SIZE) + obj.getCreditSize() +
                 bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
                 bundle.getString(PERCENT) + obj.getPercent() +
@@ -202,5 +203,8 @@ public class CreditController implements MessageConstant, IntMenuConstant {
                 iterator.remove();
             }
         }
+    }
+
+    public void setBundle(String messagesBundleName, Locale locale) {
     }
 }
