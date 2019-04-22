@@ -77,6 +77,9 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         showAllAvailableCredits();
     }
 
+    /**
+     * method check credit list on empty and offers user to choose credit early repayment
+     */
     private void sortByEarlyRepayment() {
         if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
@@ -101,6 +104,9 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         }
     }
 
+    /**
+     * method check credit list on empty and offers user to choose rise credit line
+     */
     private void sortByRiseCreditLine() {
         if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
@@ -124,6 +130,9 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         }
     }
 
+    /**
+     * method check credit list on empty and offers user to choose credit purpose
+     */
     private void sortByCreditPurpose() {
         if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
@@ -149,7 +158,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
     }
 
     /**
-     * method check credit list on empty and offers user to make
+     * method check credit list on empty and offers user to make decision
      */
     private void showAllAvailableCredits() {
         if (allAvailableCredits.size() == 0) {
