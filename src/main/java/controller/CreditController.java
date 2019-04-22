@@ -8,6 +8,12 @@ import view.MessageConstant;
 
 import java.util.*;
 
+/**
+ * Class checks input data and process credit selection
+ *
+ * @author Mariia Miroshnychenko
+ * @version 1.0
+ */
 public class CreditController implements MessageConstant, IntMenuConstant {
     private CreditView creditView;
     private CreditModel creditModel;
@@ -24,6 +30,12 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         this.creditModel = creditModel;
     }
 
+    /**
+     * Method helps to get ResourceBundle according to selected locale
+     *
+     * @param scanner
+     * @return bundle
+     */
     private ResourceBundle getResourceBundle(Scanner scanner) {
         String letter = scanner.nextLine();
         if (letter.equalsIgnoreCase(LETTER_U)) {
@@ -46,35 +58,7 @@ public class CreditController implements MessageConstant, IntMenuConstant {
 
         creditView.printMessage(bundle.getString(WELCOME_MESSAGE));
 
-        sortByCreditParameter();
-    }
-
-    private void sortByCreditParameter() {
-        sortByEarlyRepayment();
-
-        sortByRiseCreditLine();
-
-        sortByCreditPurpose();
-
-        showAllAvailableCredits();
-    }
-
-    private void showAllAvailableCredits() {
-        if (allAvailableCredits.size() == 0) {
-            creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
-        } else {
-            creditView.printMessage(bundle.getString(MAKE_DECISION), bundle.getString(CLIENT_CHOICE));
-
-            int numberOfAvailableCredit = 0;
-
-            for (Credit obj : allAvailableCredits) {
-                creditView.printDecision((numberOfAvailableCredit + 1), DECISION_NUMBER, getStringWithAvailableCredits(obj));
-                numberOfAvailableCredit++;
-            }
-
-            creditView.printMessage(getStringWithAvailableCredits(finalChoice()));
-            creditView.printCongratulation(bundle.getString(CONGRATULATION), bundle.getString(clientCredit));
-        }
+        manageSearchProcessBuParameters();
     }
 
     private void listInitialization() {
@@ -83,55 +67,14 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         allAvailableCredits = creditModel.allCredits;
     }
 
-    public String getStringWithAvailableCredits(Credit obj) {
-        return bundle.getString(obj.getBankName()) + bundle.getString(SIZE) + obj.getCreditSize() +
-                bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
-                bundle.getString(PERCENT) + obj.getPercent() +
-                bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
-                bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
-                bundle.getString(PURPOSE) + bundle.getString(obj.getPurpose());
-    }
+    private void manageSearchProcessBuParameters() {
+        sortByEarlyRepayment();
 
-    private Credit finalChoice() {
-        int answer = scanner.nextInt();
+        sortByRiseCreditLine();
 
-        clientCredit = allAvailableCredits.get(answer - 1).getBankName();
+        sortByCreditPurpose();
 
-        return allAvailableCredits.get(answer - 1);
-    }
-
-    private void sortByCreditPurpose() {
-        if (allAvailableCredits.size() == 0) {
-            creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
-        } else {
-            creditView.printMessage(bundle.getString(SEARCH_RESULT));
-            creditView.printMessage(bundle.getString(CREDIT_PURPOSE), bundle.getString(PURPOSE_CHOOSE));
-
-            String[] purposes = {CAR, REAL_ESTATE, DEVICE, EDUCATION, APARTMENT_REPAIR, CARD, BUSINESS};
-
-            try {
-                String answer = scanner.nextLine();
-
-                if (Integer.parseInt(answer) <= 0 || Integer.parseInt(answer) >= purposes.length) {
-                    creditView.printMessage(bundle.getString(ERROR_MESSAGE));
-                    sortByCreditPurpose();
-                }
-                removeFromListByCreditPurpose(purposes[Integer.parseInt(answer) - 1]);
-            } catch (NumberFormatException e) {
-                creditView.printMessage(bundle.getString(ERROR_MESSAGE));
-                sortByCreditPurpose();
-            }
-        }
-    }
-
-    private void removeFromListByCreditPurpose(String purpose) {
-        Iterator<Credit> iterator = getCreditIterator();
-
-        while (iterator.hasNext()) {
-            if (!iterator.next().getPurpose().equals(purpose)) {
-                iterator.remove();
-            }
-        }
+        showAllAvailableCredits();
     }
 
     private void sortByEarlyRepayment() {
@@ -158,10 +101,6 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         }
     }
 
-    private Iterator<Credit> getCreditIterator() {
-        return allAvailableCredits.iterator();
-    }
-
     private void sortByRiseCreditLine() {
         if (allAvailableCredits.size() == 0) {
             creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
@@ -185,6 +124,59 @@ public class CreditController implements MessageConstant, IntMenuConstant {
         }
     }
 
+    private void sortByCreditPurpose() {
+        if (allAvailableCredits.size() == 0) {
+            creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
+        } else {
+            creditView.printMessage(bundle.getString(SEARCH_RESULT));
+            creditView.printMessage(bundle.getString(CREDIT_PURPOSE), bundle.getString(PURPOSE_CHOOSE));
+
+            String[] purposes = {CAR, REAL_ESTATE, DEVICE, EDUCATION, APARTMENT_REPAIR, CARD, BUSINESS};
+
+            try {
+                String answer = scanner.nextLine();
+
+                if (Integer.parseInt(answer) <= 0 || Integer.parseInt(answer) >= purposes.length) {
+                    creditView.printMessage(bundle.getString(ERROR_MESSAGE));
+                    sortByCreditPurpose();
+                }
+                removeFromListByCreditPurpose(purposes[Integer.parseInt(answer) - 1]);
+            } catch (NumberFormatException e) {
+                creditView.printMessage(bundle.getString(ERROR_MESSAGE));
+                sortByCreditPurpose();
+            }
+        }
+    }
+
+    /**
+     * method check credit list on empty and offers user to make
+     */
+    private void showAllAvailableCredits() {
+        if (allAvailableCredits.size() == 0) {
+            creditView.printMessage(bundle.getString(EMPTY_CREDIT_LIST));
+        } else {
+            creditView.printMessage(bundle.getString(MAKE_DECISION), bundle.getString(CLIENT_CHOICE));
+
+            int numberOfAvailableCredit = 0;
+
+            for (Credit obj : allAvailableCredits) {
+                creditView.printDecision((numberOfAvailableCredit + 1), DECISION_NUMBER, getStringWithAvailableCredits(obj));
+                numberOfAvailableCredit++;
+            }
+            creditView.printMessage(getStringWithAvailableCredits(finalChoice()));
+            creditView.printCongratulation(bundle.getString(CONGRATULATION), bundle.getString(clientCredit));
+        }
+    }
+
+    public String getStringWithAvailableCredits(Credit obj) {
+        return bundle.getString(obj.getBankName()) + bundle.getString(SIZE) + obj.getCreditSize() +
+                bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
+                bundle.getString(PERCENT) + obj.getPercent() +
+                bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
+                bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
+                bundle.getString(PURPOSE) + bundle.getString(obj.getPurpose());
+    }
+
     private void removeEarlyRepayment(boolean argument) {
         Iterator<Credit> iterator = getCreditIterator();
 
@@ -202,6 +194,41 @@ public class CreditController implements MessageConstant, IntMenuConstant {
             if (iterator.next().isRiseCreditLine() != argument) {
                 iterator.remove();
             }
+        }
+    }
+
+    private void removeFromListByCreditPurpose(String purpose) {
+        Iterator<Credit> iterator = getCreditIterator();
+
+        while (iterator.hasNext()) {
+            if (!iterator.next().getPurpose().equals(purpose)) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private Iterator<Credit> getCreditIterator() {
+        return allAvailableCredits.iterator();
+    }
+
+    private Credit finalChoice(){
+        String answer;
+
+        while (true) {
+            try {
+                answer = scanner.nextLine();
+
+                if (Integer.parseInt(answer) <= 0 || Integer.parseInt(answer) > allAvailableCredits.size()) {
+                    creditView.printMessage(bundle.getString(ERROR_MESSAGE));
+                    continue;
+                } else {
+                    clientCredit = allAvailableCredits.get(Integer.parseInt(answer) - 1).getBankName();
+                }
+            } catch (NumberFormatException e) {
+                creditView.printMessage(bundle.getString(ERROR_MESSAGE));
+                continue;
+            }
+            return allAvailableCredits.get(Integer.parseInt(answer) - 1);
         }
     }
 
