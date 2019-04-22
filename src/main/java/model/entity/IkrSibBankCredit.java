@@ -25,11 +25,6 @@ public class IkrSibBankCredit extends Credit implements MessageConstant{
         this.purpose = purpose;
     }
 
-//    public IkrSibBankPurpose getPurpose() {
-//        return purpose;
-//    }
-
-
     @Override
     public String getPurpose() {
         return purpose.getPurposeName();
@@ -89,17 +84,6 @@ public class IkrSibBankCredit extends Credit implements MessageConstant{
     public String getBankName() {
         return IKR_SIB_BANK_NAME;
     }
-
-    //    @Override
-//    public String toString() {
-//        return "IkrSibBank: " +
-//                SIZE + getCreditSize() +
-//                TERM + getTerm() +
-//                PERCENT + getPercent() +
-//                EARLY_REPAYMENT + isEarlyRepayment() +
-//                RISE_CREDIT_LINE + isRiseCreditLine(); //+
-//                //PURPOSE ;
-//    }
 
     public Givable giveCredit() {
         return this;

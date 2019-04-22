@@ -34,10 +34,6 @@ public class PrivitBankCredit extends Credit implements MessageConstant {
         return purpose.getPurposeName();
     }
 
-    public void setPurpose(PrivitBankPurpose purpose) {
-        this.purpose = purpose;
-    }
-
     @Override
     public int getCreditSize() {
         return super.getCreditSize();

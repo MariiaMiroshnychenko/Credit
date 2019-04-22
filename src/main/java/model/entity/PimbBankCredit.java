@@ -2,7 +2,7 @@ package model.entity;
 
 import view.MessageConstant;
 
-public class PimbBankCredit extends Credit implements MessageConstant{
+public class PimbBankCredit extends Credit implements MessageConstant {
     public enum PimbBankPurpose {
         FOR_REAL_ESTATE(REAL_ESTATE), FOR_DEVICE(DEVICE), FOR_APARTMENT_REPAIR(APARTMENT_REPAIR), CREDIT_CARD(CARD);
 
@@ -25,7 +25,6 @@ public class PimbBankCredit extends Credit implements MessageConstant{
     }
 
 
-
     @Override
     public String getBankName() {
         return PIMB_BANK_NAME;
@@ -34,10 +33,6 @@ public class PimbBankCredit extends Credit implements MessageConstant{
     @Override
     public String getPurpose() {
         return purpose.getPurposeName();
-    }
-
-    public void setPurpose(PimbBankPurpose purpose) {
-        this.purpose = purpose;
     }
 
     @Override
