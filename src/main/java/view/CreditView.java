@@ -31,27 +31,30 @@ public ResourceBundle bundle;
         }
     }
 
-    public void printDecision(List<Credit> creditList, String message, String credit) {
-        Iterator<Credit> iterator = creditList.iterator();
-        int counter = 0;
-        while (iterator.hasNext()){
-            System.out.printf(message, (counter + 1));
-            System.out.print(iterator.next());
+    public void printDecision(int number, String message, String credit) {
+            System.out.printf(message, number);
+            System.out.print(credit);
             System.out.println();
-            counter++;
-        }
     }
 
     public void printCongratulation(String message, String parameter) {
         System.out.printf(message, parameter);
     }
 
-    private String getStringWithAvailableCredits(Credit obj) {
-        return bundle.getString(obj.getBankName()) + bundle.getString(SIZE) +obj.getCreditSize() +
-                bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
-                bundle.getString(PERCENT) + obj.getPercent() +
-                bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
-                bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
-                bundle.getString(PURPOSE) + bundle.getString(obj.getPurpose());
+    private void showAllAvailableCredits(List<Credit> list, String decisionNumber, String credits) {
+        int counter = 0;
+
+        for (Credit obj : list) {
+            printDecision((counter + 1), DECISION_NUMBER, credits);
+            counter++;
+        }
     }
+//    private String getStringWithAvailableCredits(Credit obj) {
+//        return bundle.getString(obj.getBankName()) + bundle.getString(SIZE) +obj.getCreditSize() +
+//                bundle.getString(TERM) + obj.getTerm() + bundle.getString(MONTHS) +
+//                bundle.getString(PERCENT) + obj.getPercent() +
+//                bundle.getString(IS_EARLY_PREPAYMENT) + obj.isEarlyRepayment() +
+//                bundle.getString(IS_RISE_CREDIT_LINE) + obj.isRiseCreditLine() +
+//                bundle.getString(PURPOSE) + bundle.getString(obj.getPurpose());
+//    }
 }

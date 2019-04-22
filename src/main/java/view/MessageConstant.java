@@ -42,5 +42,8 @@ public interface MessageConstant {
 
     String LETTER_U = "U";
     String LETTER_R = "R";
-    String DESISION_NUMBER = "%d - ";
+    String DECISION_NUMBER = "%d - ";
+
+    String ERROR_MESSAGE = "error.message";
+    String EMPTY_CREDIT_LIST = "empty.credit.list";
 }
