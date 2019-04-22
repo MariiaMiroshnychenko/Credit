@@ -8,6 +8,7 @@ public interface MessageConstant {
     String CREDIT_AMOUNT = "credit.amount";
     String CREDIT_TERM = "credit.term";
     String CREDIT_PERCENT = "credit.percent";
+    String CREDIT_PURPOSE = "choose.credit.purpose";
 
     String SIZE = "credit.size.value";
     String TERM = "credit.term.value";
@@ -32,7 +33,14 @@ public interface MessageConstant {
 
     String MESSAGES_BUNDLE_NAME = "messages";
     String CHANGE_LANGUAGE = "If you want to change language press \"U\" - for Ukrainian, \"R\" - for Russian, or press any letter to ignore this message";
+    String PURPOSE_CHOOSE = "purpose.message";
+
+    String SEARCH_RESULT = "search.result.message";
+    String MAKE_DECISION = "offer.to.make.decision";
+    String CLIENT_CHOICE = "client.choice";
+    String CONGRATULATION = "congratulation.message";
 
     String LETTER_U = "U";
     String LETTER_R = "R";
+    String DESISION_NUMBER = "%d - ";
 }
